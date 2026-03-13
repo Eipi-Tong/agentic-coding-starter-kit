@@ -1,61 +1,138 @@
 # Agentic Coding Starter Kit
 
-This is 
+A reusable Claude Code starter kit for web projects. Drop it into any new repo and get a structured agent workflow out of the box — with consistent commits, living docs, and clear rules for what the agent does versus what you decide.
 
-# Agentic Harness Coding Template
+---
 
-> This is for human.
+## What's included
 
-When I'm learning agentic coding and receiving huge amounts of the information of agentic coding, I'm thinking of having a fixed workflow of creating an agentic coding project (mainly for python) and fully using the capability of the agents.
+```
+CLAUDE.md                        ← Agent's operating manual (read every session)
+SPEC.md                          ← Living project spec (human + agent co-own)
+docs/
+  DECISIONS.md                   ← Architecture decision log (ADRs)
+.claude/
+  BOOTSTRAP_FORM.md              ← Fill this once to configure your project
+  rules/
+    approval-gates.md            ← Actions that require human sign-off
+    commit-rules.md              ← Conventional Commits enforcement
+    definition-of-done.md        ← Checklist the agent runs before every commit
+    doc-sync.md                  ← How the agent keeps docs in sync with code
+  skills/
+    bootstrap/SKILL.md           ← /bootstrap — scaffold a new project
+    new-feature/SKILL.md         ← /new-feature — plan and build a feature
+    sync-docs/SKILL.md           ← /sync-docs — update spec and decision log
+    commit/SKILL.md              ← /commit — guided Conventional Commit
+```
 
-I references to 
-[https://code.claude.com/docs/en/overview](Claude Code Docs)
-[https://github.com/davila7/claude-code-templates](Claude Code Templates)
-[https://github.com/AlexPEClub/ai-coding-starter-kit](Claude Code Starter Kit for Next.js)
+---
 
-And my experience in agentic coding
+## Getting started
 
-Project Name: 
+**1. Fill in the bootstrap form**
 
-Agentic Coding Starter Kit
+Open `.claude/BOOTSTRAP_FORM.md` and fill in your tech stack choices. Every field you leave as `~` will be asked about interactively during bootstrap.
 
-Goal:
+**2. Run bootstrap**
 
-1. I want to make agentic coding a fixed workflow for me and I could re-use the starter kit in every project I'd make when using claude code.
+Open Claude Code in the project root and run:
 
-2. Since agentic coding format changes fast, I'd like to make it in a high level, including the basic functionality and make it feasible for most web project.
+```
+/bootstrap
+```
 
-3. In the codebase, we need
-[] frontend
-[] backend
-[] toolings & scripts & configurations (linting, deployment(docker), test, git)
-[] docs (requirements & final production manuls, if possible)
-[] Agents (skills, etc.). [project's core]
+The agent will read your form, scaffold the directory structure, generate starter config files, initialise git, and populate `SPEC.md` and `docs/DECISIONS.md`.
 
-4. All of the frontend, backend, toolings, docs, and their tech stack should be chosen by humans. 
+**3. Add your first features to SPEC.md**
 
-5. The agent will have several functionalities:
-[] guide the user(developer) to choose tech stacks and generate a clean start project for user
-[] since the user will develop relying the agent, we should tell the agent to generate suitable `prompt template` for users so that users can fill it with feature requirements for following development
-[] agent can also commit codes, so we need to tell it the rules of it
-[] agent can also sync modify docs when changing codes
+Open `SPEC.md` and add feature descriptions under `### Backlog`. These are yours to write — the agent only updates status markers and the changelog.
 
-6. the project should only include necessary markdown files to start a claude code coding project, here are what I can think of:
-[] bootstrap-form: kind of like a checklist, guide user to fill in all the tech stacks and different tech choices
-[] decision-boundaries: set the rules for what agent do and what human need to do (rule-driven side)
+**4. Start building**
 
-Questions:
+Use `/new-feature` to kick off any feature. The agent will ask one clarifying question if needed, present a plan for your approval, then execute step by step with commits along the way.
 
-[] Is the project workable? Give me some suggestions on it?
-[] Help me set the scope of the project and make it useful.
-[] What can be a good way for user to interact with agent at the beginning?
-[] Do we neeed "Definition of Done", "Project Summary" (spec-driven side), or other rules, skills or markdowns to guide the agent?
+---
 
+## Slash commands
 
+| Command | What it does |
+|---|---|
+| `/bootstrap` | Scaffold a new project from `.claude/BOOTSTRAP_FORM.md` |
+| `/new-feature` | Plan and build a feature request |
+| `/sync-docs` | Update `SPEC.md` and `docs/DECISIONS.md` after code changes |
+| `/commit` | Create a well-formed Conventional Commit with pre-commit checks |
 
+---
 
-## Todos
+## How ownership is divided
 
-[] support claude code
+| Agent does autonomously | Human must approve |
+|---|---|
+| Write and edit code | Tech stack choices |
+| Run lint, type-check, tests | Architecture decisions |
+| Commit on non-protected branches | Merges to protected branches |
+| Update `SPEC.md` status and changelog | Feature descriptions and acceptance criteria |
+| Log ADRs to `DECISIONS.md` | Decisions that contradict existing ADRs |
+| Generate boilerplate and config | New dependencies not in the original stack |
 
+A full list of approval gates is in `.claude/rules/approval-gates.md`.
 
+---
+
+## How to request a feature
+
+Use this template when prompting the agent:
+
+```
+## Feature Request
+
+**What:** <one sentence — what the feature does>
+
+**Why:** <user story or business reason>
+
+**Acceptance criteria:**
+- [ ] <testable outcome 1>
+- [ ] <testable outcome 2>
+
+**Scope:**
+- In: <what to build>
+- Out: <what NOT to touch>
+
+**Notes:** <edge cases, API contracts, design constraints>
+```
+
+Or just run `/new-feature` and the agent will ask you the right questions.
+
+---
+
+## Design principles
+
+**Lean context.** `CLAUDE.md` is kept under 30 lines and acts as an index. Detail lives in `.claude/rules/` and `.claude/skills/`, loaded on demand rather than injected into every session.
+
+**Rules vs skills.** Rules (`.claude/rules/`) are reference content the agent reads passively when relevant. Skills (`.claude/skills/`) are task workflows invoked explicitly with a slash command.
+
+**Human owns decisions, agent owns execution.** The agent never chooses a tech stack, expands scope, or merges to a protected branch. `SPEC.md` has explicit ownership comments so neither side overwrites the other's work.
+
+**Commit discipline.** Every commit follows [Conventional Commits](https://www.conventionalcommits.org/). The `/commit` skill runs lint and type-check before staging anything, and shows the commit message for confirmation before writing it.
+
+---
+
+## Reusing this kit
+
+Copy the entire `.claude/` directory, `CLAUDE.md`, and `SPEC.md` into any new project. Then:
+
+1. Clear `SPEC.md` down to the template placeholders
+2. Re-fill `.claude/BOOTSTRAP_FORM.md` for the new project's stack
+3. Run `/bootstrap`
+
+Everything else carries over unchanged.
+
+---
+
+## To do tasks
+
+- [ ] The correct way for requesting features
+- [ ] Test the correctness of generative contents
+- [ ] More examples in different kinds of applications
+- [ ] Update `docs/DECISIONS.md` rules and `SPEC.md` for better logging
+- [ ] Extend functionalities in testing, deployment and so on
