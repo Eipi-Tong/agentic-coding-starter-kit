@@ -1,0 +1,14 @@
+[
+  {
+    "institution": "University Name",
+    "degree": "Bachelor of Science",
+    "field": "Computer Science",
+    "startDate": "2018-09",
+    "endDate": "2022-05",
+    "gpa": "3.8",
+    "highlights": [
+      "Dean's List all semesters",
+      "Relevant coursework: Algorithms, Data Structures, Systems Programming"
+    ]
+  }
+]

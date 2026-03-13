@@ -5,29 +5,38 @@
 ---
 
 ## ADR-001: Repository Structure
-**Date:** —
+**Date:** 2026-03-12
 **Status:** Accepted
 **Context:** Chosen during project bootstrap
-**Decision:** _filled by agent from BOOTSTRAP_FORM.md_
-**Consequences:** Determines how frontend, backend, and shared packages are organized
+**Decision:** Single-app structure — portfolio is purely frontend, no backend services needed.
+**Consequences:** Simpler repo, no workspace or monorepo tooling required.
 
 ---
 
 ## ADR-002: Frontend Stack
-**Date:** —
+**Date:** 2026-03-12
 **Status:** Accepted
 **Context:** Chosen during project bootstrap
-**Decision:** _filled by agent from BOOTSTRAP_FORM.md_
-**Consequences:** Sets framework, styling, and component library constraints for all UI work
+**Decision:** Next.js 15 (App Router) + TypeScript + Tailwind CSS. No component library.
+**Consequences:** Server components available by default; `output: "standalone"` enables Docker deployment. Tailwind keeps bundle lean without a component lib.
 
 ---
 
 ## ADR-003: Backend Stack
-**Date:** —
+**Date:** 2026-03-12
 **Status:** Accepted
 **Context:** Chosen during project bootstrap
-**Decision:** _filled by agent from BOOTSTRAP_FORM.md_
-**Consequences:** Sets runtime, framework, ORM, and API style constraints for all server work
+**Decision:** No backend. All portfolio content lives in JSON files at `src/data/` checked into the repo.
+**Consequences:** Zero infra cost; no API surface to maintain. Content updates require a rebuild and redeploy.
+
+---
+
+## ADR-004: Docker containerization
+**Date:** 2026-03-12
+**Status:** Accepted
+**Context:** Chosen during project bootstrap
+**Decision:** Multi-stage Dockerfile with Next.js standalone output; docker-compose for local runs.
+**Consequences:** Portable deployment to any container host. `output: "standalone"` in next.config.ts is required.
 
 ---
 

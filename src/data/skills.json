@@ -1,0 +1,7 @@
+{
+  "languages": ["TypeScript", "Python", "Go", "SQL"],
+  "frameworks": ["Next.js", "React", "FastAPI", "Node.js"],
+  "tools": ["Docker", "Git", "GitHub Actions", "Figma"],
+  "cloud": ["AWS", "Vercel", "GCP"],
+  "other": ["REST APIs", "PostgreSQL", "Redis", "GraphQL"]
+}

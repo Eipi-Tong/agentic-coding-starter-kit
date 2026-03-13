@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Project One",
+    "description": "A brief description of what this project does and why it exists.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/yourusername/project-one",
+    "live": "https://project-one.example.com",
+    "highlights": [
+      "Key feature or achievement",
+      "Performance metric or scale"
+    ]
+  },
+  {
+    "name": "Project Two",
+    "description": "Another project description.",
+    "tech": ["Python", "FastAPI", "PostgreSQL"],
+    "github": "https://github.com/yourusername/project-two",
+    "live": null,
+    "highlights": [
+      "Solved a specific problem",
+      "Used by X number of users"
+    ]
+  }
+]

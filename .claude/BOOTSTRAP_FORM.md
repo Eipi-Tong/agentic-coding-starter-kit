@@ -8,10 +8,10 @@
 ## 1. Project Identity
 
 ```
-Project name:       ~
-Short description:  ~
-Primary language:   ~        # e.g. TypeScript, Python, Go
-Target platform:    ~        # e.g. web, mobile-web, desktop, API-only
+Project name:       Self Portfolio
+Short description:  A single-page application self portfolio, including contact information, education, work experience, projects, skills. All information can be changed in json files.
+Primary language:   TypeScript        # e.g. TypeScript, Python, Go
+Target platform:    web        # e.g. web, mobile-web, desktop, API-only
 ```
 
 ---
@@ -19,7 +19,7 @@ Target platform:    ~        # e.g. web, mobile-web, desktop, API-only
 ## 2. Repository Structure
 
 ```
-Structure:          ~        # monorepo | polyrepo | single-app
+Structure:          single-app        # monorepo | polyrepo | single-app
 # monorepo   → frontend/ backend/ packages/ all in one repo
 # polyrepo   → separate repos per service (agent will only scaffold one at a time)
 # single-app → no backend, frontend only (or backend only)
@@ -32,13 +32,13 @@ Top-level dirs:     ~        # only for monorepo — e.g. apps/web, apps/api, pa
 ## 3. Frontend
 
 ```
-Include frontend:   ~        # yes | no
+Include frontend:   yes        # yes | no
 
-Framework:          ~        # Next.js | Remix | SvelteKit | Nuxt | Vite+React | Vue | none
-Styling:            ~        # Tailwind | CSS Modules | styled-components | UnoCSS | none
-Component lib:      ~        # shadcn/ui | Radix | MUI | Chakra | none
+Framework:          Next.js        # Next.js | Remix | SvelteKit | Nuxt | Vite+React | Vue | none
+Styling:            Tailwind        # Tailwind | CSS Modules | styled-components | UnoCSS | none
+Component lib:      none        # shadcn/ui | Radix | MUI | Chakra | none
 State management:   ~        # Zustand | Jotai | Redux Toolkit | React Query | none
-Auth (frontend):    ~        # NextAuth | Clerk | Supabase Auth | none
+Auth (frontend):    none        # NextAuth | Clerk | Supabase Auth | none
 ```
 
 ---
@@ -46,7 +46,7 @@ Auth (frontend):    ~        # NextAuth | Clerk | Supabase Auth | none
 ## 4. Backend
 
 ```
-Include backend:    ~        # yes | no
+Include backend:    no        # yes | no
 
 Runtime:            ~        # Node.js | Python | Go | Rust | none
 Framework:          ~        # Express | Fastify | Hono | FastAPI | Django | Gin | none
@@ -61,10 +61,10 @@ API style:          ~        # REST | tRPC | GraphQL | none
 ## 5. Infrastructure & Deployment
 
 ```
-Containerize:       ~        # yes | no  (generates Dockerfile + docker-compose)
-Cloud target:       ~        # Vercel | Railway | Fly.io | AWS | GCP | self-hosted | none
-CI/CD:              ~        # GitHub Actions | GitLab CI | none
-Environment vars:   ~        # .env.local | Doppler | AWS Secrets | none
+Containerize:       yes        # yes | no  (generates Dockerfile + docker-compose)
+Cloud target:       none        # Vercel | Railway | Fly.io | AWS | GCP | self-hosted | none
+CI/CD:              none        # GitHub Actions | GitLab CI | none
+Environment vars:   none        # .env.local | Doppler | AWS Secrets | none
 ```
 
 ---
@@ -72,12 +72,12 @@ Environment vars:   ~        # .env.local | Doppler | AWS Secrets | none
 ## 6. Tooling
 
 ```
-Package manager:    ~        # npm | pnpm | yarn | bun | pip | uv
-Linter:             ~        # ESLint | Biome | Ruff | none
-Formatter:          ~        # Prettier | Biome | Black | none
-Testing framework:  ~        # Vitest | Jest | Pytest | Playwright | none
-Git hooks:          ~        # Husky + lint-staged | lefthook | none
-Commit convention:  ~        # Conventional Commits | none
+Package manager:    yarn        # npm | pnpm | yarn | bun | pip | uv
+Linter:             ESLint        # ESLint | Biome | Ruff | none
+Formatter:          none        # Prettier | Biome | Black | none
+Testing framework:  none        # Vitest | Jest | Pytest | Playwright | none
+Git hooks:          none        # Husky + lint-staged | lefthook | none
+Commit convention:  none        # Conventional Commits | none
 ```
 
 ---
@@ -85,10 +85,10 @@ Commit convention:  ~        # Conventional Commits | none
 ## 7. Agent Behaviour Preferences
 
 ```
-Auto-commit:        ~        # yes | no  (agent commits after every completed task)
-Doc sync:           ~        # yes | no  (agent updates SPEC.md when code changes)
-PR descriptions:    ~        # yes | no  (agent writes PR body on push)
-Notify on:          ~        # commit | pr | never  (when agent should pause for human review)
+Auto-commit:        yes        # yes | no  (agent commits after every completed task)
+Doc sync:           yes        # yes | no  (agent updates SPEC.md when code changes)
+PR descriptions:    no        # yes | no  (agent writes PR body on push)
+Notify on:          never        # commit | pr | never  (when agent should pause for human review)
 ```
 
 ---
@@ -96,10 +96,10 @@ Notify on:          ~        # commit | pr | never  (when agent should pause for
 ## 8. Team & Context
 
 ```
-Solo or team:       ~        # solo | team
-Main branch:        ~        # main | master
-Protected branches: ~        # e.g. main, staging
-Code review:        ~        # required | optional | none
+Solo or team:       solo        # solo | team
+Main branch:        main        # main | master
+Protected branches: main        # e.g. main, staging
+Code review:        none        # required | optional | none
 ```
 
 ---

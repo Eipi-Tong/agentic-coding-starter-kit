@@ -1,0 +1,25 @@
+[
+  {
+    "company": "Company Name",
+    "role": "Senior Software Engineer",
+    "startDate": "2022-06",
+    "endDate": null,
+    "location": "San Francisco, CA",
+    "bullets": [
+      "Led development of X feature, improving Y metric by Z%",
+      "Collaborated with cross-functional teams to deliver major product releases",
+      "Mentored junior engineers and conducted code reviews"
+    ]
+  },
+  {
+    "company": "Previous Company",
+    "role": "Software Engineer",
+    "startDate": "2020-01",
+    "endDate": "2022-05",
+    "location": "Remote",
+    "bullets": [
+      "Built and maintained REST APIs serving 1M+ requests/day",
+      "Reduced page load time by 40% through performance optimizations"
+    ]
+  }
+]
