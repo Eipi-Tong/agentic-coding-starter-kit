@@ -129,10 +129,10 @@ Everything else carries over unchanged.
 
 ---
 
-## To do tasks
-
-- [ ] The correct way for requesting features
-- [ ] Test the correctness of generative contents
-- [ ] More examples in different kinds of applications
-- [ ] Update `docs/DECISIONS.md` rules and `SPEC.md` for better logging
-- [ ] Extend functionalities in testing, deployment and so on
+## Contributing
+ 
+Contributions welcome. Good places to start:
+ 
+- Add rules for a workflow not yet covered (e.g. code review, hotfix, release)
+- Add an example project for a stack not yet represented
+- Improve the wording of existing rules or skills for clarity and consistency
