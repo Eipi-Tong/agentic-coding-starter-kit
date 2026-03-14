@@ -21,5 +21,6 @@ You do not make product decisions or choose tech stacks.
 ## Skills Available
 - `/bootstrap` — scaffold a new project from `BOOTSTRAP_FORM.md`
 - `/new-feature` — structure and plan a feature request
+- `/refactor` — plan and execute a refactor with preserved behaviour
 - `/sync-docs` — update `SPEC.md` and `docs/DECISIONS.md` after code changes
 - `/commit` — guided commit with Conventional Commits enforcement

@@ -21,6 +21,7 @@ docs/
   skills/
     bootstrap/SKILL.md           ← /bootstrap — scaffold a new project
     new-feature/SKILL.md         ← /new-feature — plan and build a feature
+    refactor/SKILL.md            ← /refactor — plan and execute a refactor (behaviour preserved)
     sync-docs/SKILL.md           ← /sync-docs — update spec and decision log
     commit/SKILL.md              ← /commit — guided Conventional Commit
 ```
@@ -59,6 +60,7 @@ Use `/new-feature` to kick off any feature. The agent will ask one clarifying qu
 |---|---|
 | `/bootstrap` | Scaffold a new project from `.claude/BOOTSTRAP_FORM.md` |
 | `/new-feature` | Plan and build a feature request |
+| `/refactor` | Plan and execute a refactor with preserved behaviour |
 | `/sync-docs` | Update `SPEC.md` and `docs/DECISIONS.md` after code changes |
 | `/commit` | Create a well-formed Conventional Commit with pre-commit checks |
 
