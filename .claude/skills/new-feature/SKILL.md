@@ -1,60 +1,108 @@
 ---
 name: new-feature
-description: Structure and plan a feature request. Use when the user asks to build a new feature, add functionality, or says "I want to add X".
+description: Pick and build features from SPEC.md by priority. Use when the user says "build the next feature", "/new-feature", "work on X", or "build the <group> group".
 ---
 
 # New Feature Skill
 
-## Step 1 — Parse the request
-If the user's request is missing any of the following, ask ONE clarifying question before proceeding:
-- What the feature does (user-facing behaviour)
-- Where it lives (which part of the app)
-- Acceptance criteria (how to know it's done)
+## Invocation modes
 
-Do not ask more than one question at a time.
+This skill has three modes depending on how it is called:
 
-## Step 2 — State a plan
-Before writing any code, output a numbered plan (3–8 steps). Example:
+| Call | Behaviour |
+|---|---|
+| `/new-feature` | Pick the next P1 item from the backlog and build it |
+| `/new-feature <n>` | Build the specific feature described by the user |
+| `/new-feature --group "<Name>"` | Build all incomplete items in that feature group, one at a time |
+
+---
+
+## Step 1 — Select the feature
+
+Read `SPEC.md` `### Backlog`.
+
+**Mode: `/new-feature` (no argument)**
+Find all `[ ]` items tagged `P1`. Pick the first one in document order.
+If no `P1` items remain, list the `P2` items and ask the human to confirm before proceeding.
+If the backlog is empty, tell the human and show the prompt template at the bottom of this file.
+
+**Mode: `/new-feature <description>`**
+Find the matching item in the backlog. If not found, ask the human to confirm adding it before proceeding.
+
+**Mode: `/new-feature --group "<Name>"`**
+Find all `[ ]` items under the named `###` group. Build them one by one in document order, completing and committing each before starting the next. Report progress after each.
+
+---
+
+## Step 2 — Move to In Progress
+In `SPEC.md`, move the chosen item from `### Backlog` to `### In Progress`. Commit:
+```
+docs(spec): move "<feature name>" to in progress
+```
+
+---
+
+## Step 3 — Clarify if needed
+If the feature description is ambiguous or missing context, ask ONE question before proceeding. Do not ask more than one question at a time.
+
+---
+
+## Step 4 — State a plan
+Before writing any code, output a numbered plan (3–8 steps):
 
 ```
 Plan for: <feature name>
 
-1. Add <Model> to database schema
-2. Create POST /api/<resource> endpoint
-3. Add <Component> to frontend
-4. Wire up form submission to API
-5. Write unit tests for endpoint logic
-6. Update SPEC.md
+1. <step>
+2. <step>
+...
 
 Confirm to proceed, or adjust the plan.
 ```
 
-Wait for the human to say "go" or modify the plan.
-
-## Step 3 — Execute step by step
-Work through the plan one step at a time. After each step:
-- Run lint and type-check on changed files
-- Commit with a Conventional Commit message (see `.claude/rules/commit-rules.md`)
-
-## Step 4 — Run tests
-After all steps are complete, run the full test suite. Report results. Do not proceed if tests fail.
-
-## Step 5 — Check Definition of Done
-Go through `.claude/rules/definition-of-done.md` item by item. Confirm each is satisfied.
-
-## Step 6 — Sync docs
-Run the doc sync procedure from `.claude/rules/doc-sync.md`.
+Wait for the human to confirm or adjust. In `--group` mode, confirm the plan for the first item and proceed without re-confirming for subsequent items unless something unexpected comes up.
 
 ---
 
-## Prompt Template (give this to the human on request)
+## Step 5 — Execute step by step
+Work through the plan one step at a time. After each step:
+- Run lint and type-check on changed files
+- Commit with a Conventional Commit (see `.claude/rules/commit-rules.md`)
 
-When the human asks "how do I request a feature?" or "give me the template", output this:
+---
+
+## Step 6 — Run tests
+After all steps are done, run the full test suite. Report results. Do not proceed if tests fail.
+
+---
+
+## Step 7 — Definition of Done
+Check every item in `.claude/rules/definition-of-done.md`. Confirm all are satisfied.
+
+---
+
+## Step 8 — Close the feature
+In `SPEC.md`:
+- Move the item from `### In Progress` to `### Done` and mark `[x]`
+- Add a changelog entry (see `.claude/rules/doc-sync.md`)
+
+Commit:
+```
+docs(spec): mark "<feature name>" done [<hash>]
+```
+
+In `--group` mode, loop back to Step 1 for the next item in the group.
+
+---
+
+## Prompt Template
+
+When the human asks "how do I add a feature?" output this:
 
 ```
 ## Feature Request
 
-**What:** <one sentence — what the feature does>
+**What:** <one sentence>
 
 **Why:** <user story or business reason>
 
@@ -66,5 +114,9 @@ When the human asks "how do I request a feature?" or "give me the template", out
 - In: <what to build>
 - Out: <what NOT to touch>
 
-**Notes:** <edge cases, API contracts, design constraints>
+**Priority:** P1 | P2 | P3
+
+**Notes:** <edge cases, constraints>
 ```
+
+The human can paste this inline, or add the feature directly to `### Backlog` in `SPEC.md` with a priority tag, then run `/new-feature`.

@@ -47,10 +47,19 @@ Create starter config files matching the chosen stack. Examples:
 - `.github/workflows/ci.yml` if CI/CD: GitHub Actions
 
 ## Step 4 — Generate SPEC.md
-Create `SPEC.md` using this template:
+
+Based on the project description and stack in `BOOTSTRAP_FORM.md`, infer a realistic feature list grouped by area (e.g. Core, API, Dashboard, Auth). For each feature:
+- Write a short, specific description (one line)
+- Assign a default priority: `P1` for foundational features, `P2` for important but non-blocking, `P3` for enhancements
+- Group features under `###` headings by area
+
+Tell the human after generating:
+> "These features were inferred from your project description. Edit priorities (`P1`/`P2`/`P3`) and add or remove items before running `/new-feature`."
+
+Use this structure:
 
 ```markdown
-# Project Spec: <Project Name>
+# SPEC.md
 
 _Last updated: <date>_
 
@@ -58,12 +67,38 @@ _Last updated: <date>_
 <Short description from BOOTSTRAP_FORM.md>
 
 ## Tech Stack
-<Summarise frontend, backend, infra from BOOTSTRAP_FORM.md>
+| Layer | Choice |
+|---|---|
+<rows from BOOTSTRAP_FORM.md>
 
 ## Features
-_Fill this in as development progresses._
 
-- [ ] <First feature>
+<!--
+HUMAN: Mark priorities with P1 / P2 / P3 tags. Agent picks the next P1 when you run /new-feature.
+AGENT: Never reword descriptions or change priority tags. Only update [ ]/[x] and move items between sections.
+-->
+
+### In Progress
+_Nothing in progress yet._
+
+### Backlog
+
+#### <Group 1>
+- [ ] <feature> `P1`
+- [ ] <feature> `P2`
+
+#### <Group 2>
+- [ ] <feature> `P1`
+- [ ] <feature> `P3`
+
+### Done
+_Nothing done yet._
+
+## Out of Scope
+- —
+
+## Open Questions
+- —
 
 ## Changelog
 | Date | Commit | Change |
@@ -84,5 +119,6 @@ git commit -m "chore: initial project scaffold"
 
 ## Step 7 — Print summary
 List what was created and tell the human what to do next:
-1. Fill in `SPEC.md` with their first features
-2. Run `/new-feature` when ready to build something
+1. Review and adjust priorities in `SPEC.md` (`P1` = build first)
+2. Run `/new-feature` to start building — agent picks the next `P1` item
+3. Run `/new-feature --group "<name>"` to build a whole feature group at once
